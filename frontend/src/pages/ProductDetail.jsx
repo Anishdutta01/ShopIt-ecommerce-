@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { AuthContext } from '../context/AuthContext';
 import { addToCart } from '../redux/cartslice';
 import '../styles/product.css';
 
@@ -8,7 +9,9 @@ const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { user } = useContext(AuthContext);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -26,6 +29,12 @@ const ProductDetail = () => {
   }, [id]);
 
   const handleAddToCart = () => {
+    if (!user) {
+      alert('Please log in to add items to your cart.');
+      navigate('/login');
+      return;
+    }
+
     if (product) {
       dispatch(addToCart({
         productId: product._id,
