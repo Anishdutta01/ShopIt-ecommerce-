@@ -12,7 +12,7 @@
 - **Backend:** Node.js, Express.js architecture mapped with middleware-based routing.
 - **Database:** MongoDB (via Mongoose schemas).
 - **Features:** Unified Admin Dashboard, Direct Cloudinary Content Maps, Personal User Profiles matching mapped Order Histories.
-- **Payments:** Razorpay fully implemented (utilize your test metrics or placeholder).
+- **Payments:** Implemented Razorpay payment gateway support with a development fallback payment flow.
 - **Cloud Storage:** Cloudinary integration for Product image uploading securely via Multer.
 
 ---
